@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class StackUsingLL {
+    private class Node {
+        int data;
+        Node next;
+    }
+    Node top;
+    StackUsingLL() {
+        this.top = null;
+    }
+
+    public boolean isEmpty() {
+       return top == null;
+    }
+    public void push(int value) {
+       Node temp = new Node();
+          temp.data = value;
+          temp.next = top;
+          top = temp;
+    }
+    public void peek(){
+        if(isEmpty()){
+            System.out.println("stack is empty!!");
+            return;
+        }
+        System.out.println("peek element "+top.data);
+    }
+    public void pop() {
+        if(isEmpty()){
+            System.out.println("stack is empty!!");
+            return;
+        }
+        top=top.next;
+    }
+
+    public static void main(String[] args) {
+        StackUsingLL stack = new StackUsingLL();
+        Scanner sc = new Scanner(System.in);
+        stack.push(sc.nextInt());
+        stack.push(sc.nextInt());
+        stack.push(sc.nextInt());
+        stack.peek();
+        stack.pop();
+        stack.peek();
+        sc.close();
+    }
+}
