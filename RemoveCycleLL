@@ -1,0 +1,34 @@
+https://practice.geeksforgeeks.org/problems/remove-loop-in-Linked-list/1#
+
+class Solution
+{
+     private static Node detectCycle1(Node head){
+        Node slow = head;
+        Node fast = head;
+        Node prev =null;
+        while(fast!=null && fast.next!=null){
+            prev=slow;
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return prev;
+            }
+        }
+        return null;
+    }
+    //Function to remove a loop in the linked list.
+    public static void removeLoop(Node head){
+         Node prev = detectCycle1(head);
+        if(prev == null){
+            return;
+        }
+        Node meet = prev.next;
+        Node start = head;
+        while(start!=meet){
+            prev = prev.next;
+            start = start.next;
+             meet = meet.next;
+        }
+           prev.next = null;
+    } 
+}
