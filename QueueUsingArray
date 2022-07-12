@@ -24,7 +24,12 @@ class Queue{
         if(front == -1){
             throw new RuntimeException("Queue is empty");
         }
-        front++;
+        int i=0;
+        while(i<rear){
+        data[i] = data[i+1];
+        i++;
+        }
+        rear--;
         if(front > rear){
             front = rear = -1;
             return;
