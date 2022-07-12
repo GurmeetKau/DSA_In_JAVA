@@ -1,0 +1,64 @@
+class Queue {
+    int data;
+    Queue next;
+    Queue front;
+    Queue rear;
+
+    Queue() {
+        front = rear = null;
+    }
+
+    void enqueue(int data) {
+        Queue newNode = new Queue();
+        newNode.data = data;
+        if (front == null) {
+            front = rear = newNode;
+            return;
+        }
+        rear.next = newNode;
+        rear = newNode;
+    }
+
+    void dequeue() {
+        if (front == null) {
+            throw new RuntimeException("Queue is empty");
+        }
+        front = front.next;
+    }
+    void getFront(){
+        System.out.println("******Front Element******");
+        System.out.println(front.data);
+    }
+    void getRear(){
+        System.out.println("******Rear Element******");
+        System.out.println(rear.data);
+    }
+    void print(){
+        if (front == null) {
+            throw new RuntimeException("Queue is empty");
+        }
+        System.out.println("**Elements in Queue**");
+        Queue index = front;
+        do{
+            System.out.print(index.data+ " ");
+            index = index.next;
+        }while(index != rear);
+        System.out.print(index.data);
+    }
+}
+
+public class QueueULL {
+    public static void main(String[] args) {
+        Queue q = new Queue();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.enqueue(40);
+        q.dequeue();
+        //q.dequeue();
+        q.getFront();
+        q.getRear();
+        q.print();
+        // System.out.println(q);
+    }
+}
