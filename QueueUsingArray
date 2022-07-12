@@ -1,0 +1,64 @@
+class Queue{
+    int data[];
+    int front,rear;
+    int size;
+    Queue(int size){
+        this.size = size;
+        front = rear = -1;
+        data = new int[size];
+    }
+    void enQueue(int value){
+        if(rear == (size-1)){
+            throw new RuntimeException("Queue is full");
+        }
+        if(front == -1){
+            front++;
+            data[front] = value;
+            rear = front ;
+            return;
+        }
+        rear++;
+        data[rear] = value;
+    }
+    void deQueue(){
+        if(front == -1){
+            throw new RuntimeException("Queue is empty");
+        }
+        front++;
+        if(front > rear){
+            front = rear = -1;
+            return;
+        }
+    }
+    void print(){
+        int i = front;
+        if(i<0){
+            return;
+        }
+        System.out.println("******Queue elements******");
+       while(i!=rear){
+           System.out.print(data[i]+" ");
+           i++;
+       }
+       System.out.print(data[i]);
+    }
+}
+public class QueueUA {
+    public static void main(String[] args) {
+        Queue q = new Queue(5);
+        q.enQueue(10);
+        q.enQueue(20);
+        q.enQueue(30);
+        q.enQueue(40);
+        q.enQueue(50);
+        q.deQueue();
+        q.deQueue();
+        q.deQueue();
+        q.deQueue();
+        q.deQueue();
+        q.enQueue(100);
+        q.enQueue(200);
+        q.enQueue(300);
+        q.print();
+    } 
+}
