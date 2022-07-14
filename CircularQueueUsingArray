@@ -1,0 +1,56 @@
+class Queue {
+    int data[];
+    int front;
+    int rear;
+    int n;
+    Queue(int size) {
+        this.n = size;
+        front = -1;
+        rear = -1;
+        data = new int[n];
+    }
+
+    void enQueue(int value) {
+        if (((rear + 1) % n) == front) {
+            throw new RuntimeException("Queue is full");
+        }
+        if (front == -1)   
+         front = 0 ; 
+         
+        rear = (rear + 1) % n;
+        data[rear] = value; 
+    }
+    void deQueue() {
+        int result = front;
+        if (front == -1) {
+            throw new RuntimeException("Queue is empty");
+        }
+        if (front == rear) {
+            System.out.println("dequeue element :"+data[result]);
+            front = rear = -1;
+            return;
+        }
+        front = (front + 1) % n;
+        System.out.println("dequeue element :"+data[result]);
+    }
+}
+
+public class CircularQueueUA {// benefit of using circular queue is O(1)
+    public static void main(String[] args) {
+        Queue Ob = new Queue(5);
+        Ob.enQueue(100);
+        Ob.enQueue(200);
+        Ob.enQueue(300);
+        Ob.enQueue(400);
+        Ob.enQueue(500);
+        Ob.deQueue();
+        Ob.deQueue();
+        Ob.deQueue();
+        Ob.deQueue();
+        Ob.deQueue();
+        Ob.enQueue(1000);
+        Ob.enQueue(2000);
+        Ob.enQueue(3000);
+        Ob.enQueue(4000);
+    }
+}
