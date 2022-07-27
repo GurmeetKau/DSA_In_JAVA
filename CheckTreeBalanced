@@ -1,0 +1,29 @@
+https://practice.geeksforgeeks.org/problems/check-for-balanced-tree/1
+
+class Tree
+{
+//Function to check the height of tree.
+    private int height(Node root){
+        if(root==null){
+            return 0;
+        }
+        return Math.max(height(root.left),height(root.right))+1;
+    }
+ //Function to check whether a binary tree is balanced or not.
+    boolean isBalanced(Node root)
+    {
+	if(root==null){
+	    return true;
+	}
+	int heightOfLT=height(root.left);
+	int heightOfRT=height(root.right);
+	int Diff = Math.abs(heightOfLT-heightOfRT);
+	if(Diff<2 && isBalanced(root.left) && isBalanced(root.right)){
+	    return true;
+	}
+	else{
+	    return false;
+	}
+    }
+}
+
