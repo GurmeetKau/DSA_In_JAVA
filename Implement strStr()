@@ -1,0 +1,23 @@
+https://leetcode.com/problems/implement-strstr/submissions/
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int find = 0;
+        for(int len=1; len<=haystack.length(); len++) { 
+            for(int index=0;index<=haystack.length()-len;index++) { 
+               String str = haystack.substring(index,index+len);
+                if(!(needle.equals(str)))
+                    continue;
+                
+                   else{
+                       find = index;
+                       return index;
+                   }
+            }
+        }
+        if(find==0){
+            return -1;
+        }
+        return find;
+    }
+}
