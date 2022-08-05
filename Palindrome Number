@@ -1,0 +1,32 @@
+https://leetcode.com/problems/palindrome-number/submissions/
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if(x<0){
+            return false;
+        }
+        if(x==0){
+            return true;
+        }
+        int r;
+        int num = x;
+        String s = "";
+        while(x>0){
+            r=x%10;
+            s+=Integer.toString(r);
+            x=x/10;
+        }
+        //System.out.println(s);
+        try{ 
+           int finalInt = Integer.parseInt (s); 
+                    if(finalInt==num){
+                       return true;
+                      }
+                   return false;
+            
+        }catch(Exception e) 
+        {             
+           return false; 
+        }
+    }
+}
