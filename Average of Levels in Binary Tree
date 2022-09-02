@@ -1,0 +1,55 @@
+class Solution {
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> MangoTree= new ArrayList<Double>();
+        Queue<TreeNode> q = new LinkedList<>();
+    Stack<Integer> result = new Stack<>();
+        q.add(root);
+        q.add(null);
+        while(!(q.isEmpty())){
+            TreeNode curr = q.poll();
+            if(curr==null){
+                if(!q.isEmpty()){
+                    int count=0;
+                    int sum=0;
+                    while(!(result.isEmpty())){
+                       sum+=result.pop();
+                        count++;
+                    }
+                    MangoTree.add(Double.valueOf(sum)/Double.valueOf(count));
+                    q.add(null);
+                 }
+                else{
+                    int count=0;
+                    int sum=0;
+                     while(!(result.isEmpty())){
+                         sum+=result.pop();
+                         if(sum==Integer.MAX_VALUE){
+                             if(!(result.isEmpty()))
+                             {int a = result.peek();
+                             if(a==Integer.MAX_VALUE)
+                             { MangoTree.add(Double.valueOf(sum)); 
+                             return MangoTree; }
+                             else if(a==Integer.MIN_VALUE){
+                                MangoTree.add(0.0);
+                                 return MangoTree;
+                             } }
+                         }
+                             count++;
+                         }
+                    
+                    MangoTree.add(Double.valueOf(sum)/Double.valueOf(count));
+                    return MangoTree;
+                }
+            } 
+            else
+            {
+            if(curr.left != null)
+            q.add(curr.left);
+            if(curr.right != null)
+            q.add(curr.right);
+            result.push(curr.val);
+        }
+        }
+        return MangoTree;
+    }
+}
